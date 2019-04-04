@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Platform, StyleSheet, View, TextInput, Button } from "react-native";
 import { connect } from "react-redux";
+import uuid from "uuid/v4";
 
 let Input_nombre = ({ agrear_elemento, dispatch, nombre_estado }) => {
   let nombre;
@@ -17,7 +18,7 @@ let Input_nombre = ({ agrear_elemento, dispatch, nombre_estado }) => {
         onPress={() =>
           !!nombre_estado
             ? agrear_elemento(nombre_estado)
-            : alert('Agrege un elemento valido!')
+            : alert("Agrege un elemento valido!")
         }
         title="Agregar"
         color="#841584"
@@ -32,8 +33,8 @@ const get_state_input_nombre = state => ({
 const mapDispatchToProps = dispatch => ({
   dispatch,
   agrear_elemento: texto => {
-    dispatch({type:"ELIMINAR-NOMBRE"});
-    dispatch({ type: "ADD-ELEMENTO", texto });
+    dispatch({ type: "ELIMINAR-NOMBRE" });
+    dispatch({ type: "ADD-ELEMENTO", texto, id: uuid() });
   }
 });
 Input_nombre = connect(
