@@ -70,14 +70,15 @@ const styles = StyleSheet.create({
   }
 });
 const mapDispatch_lista_elemento = (dispatch, ownProps) => ({
-  abrir_modal: () =>
+  abrir_modal: () => {
     dispatch({
       type: "ABRIR-MODAL",
-      key: ownProps.numero,
+      id: ownProps.numero,
       texto: ownProps.children,
       estado: true,
       imagen: ownProps.imagen_src
-    }),
+    });
+  },
   eliminar_elemento: () =>
     dispatch({
       type: "DELETE-ELEMENTO",

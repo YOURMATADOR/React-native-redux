@@ -15,8 +15,18 @@ import { lista, nombre, modal_lista_item } from "./redux/reducers/lista";
 import Modal_elemento from "./src/components/modal_elemento";
 import Input_nombre from "./src/components/Agregar_nombre";
 import Lista_elementos from "./src/components/Lista_elementos";
-
-let store = createStore(combineReducers({ modal_lista_item, lista, nombre }));
+let estado_modal = {
+  modal_lista_item: {
+    imagen: "",
+    key: "",
+    texto: "",
+    estado: false
+  }
+};
+let store = createStore(
+  combineReducers({ modal_lista_item, lista, nombre }),
+  estado_modal
+);
 
 export default class App extends Component {
   state = {
