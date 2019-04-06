@@ -1,0 +1,3 @@
+rootProject.name = 'aplicacion_yuda'
+
+include ':app'
