@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Platform, StyleSheet, View, TextInput, Button } from "react-native";
 import { connect } from "react-redux";
-import uuid from "uuid/v4";
+import { delete_nombre, add_elemento } from "../../redux/actions/index";
 
 let Input_nombre = ({ agrear_elemento, dispatch, nombre_estado }) => {
   let nombre;
@@ -33,8 +33,8 @@ const get_state_input_nombre = state => ({
 const mapDispatchToProps = dispatch => ({
   dispatch,
   agrear_elemento: texto => {
-    dispatch({ type: "ELIMINAR-NOMBRE" });
-    dispatch({ type: "ADD-ELEMENTO", texto, id: uuid() });
+    dispatch(delete_nombre());
+    dispatch(add_elemento({ texto }));
   }
 });
 Input_nombre = connect(

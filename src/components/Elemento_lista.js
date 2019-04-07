@@ -9,6 +9,8 @@ import {
 } from "react-native";
 import { connect } from "react-redux";
 
+import { delete_elemento, open_modal } from "../../redux/actions/index";
+
 let Lista_elemento = ({
   imagen_src,
   children,
@@ -71,19 +73,15 @@ const styles = StyleSheet.create({
 });
 const mapDispatch_lista_elemento = (dispatch, ownProps) => ({
   abrir_modal: () => {
-    dispatch({
-      type: "ABRIR-MODAL",
-      id: ownProps.numero,
-      texto: ownProps.children,
-      estado: true,
-      imagen: ownProps.imagen_src
-    });
+    dispatch(
+      open_modal({
+        key: ownProps.numero,
+        imagen: ownProps.imagen_src,
+        texto: ownProps.children
+      })
+    );
   },
-  eliminar_elemento: () =>
-    dispatch({
-      type: "DELETE-ELEMENTO",
-      id: ownProps.numero
-    })
+  eliminar_elemento: () => dispatch(delete_elemento({ id: ownProps.numero }))
 });
 Lista_elemento = connect(
   null,

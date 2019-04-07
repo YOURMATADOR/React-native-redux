@@ -12,6 +12,8 @@ import {
 } from "react-native";
 import { connect } from "react-redux";
 
+import { delete_elemento, close_modal } from "../../redux/actions/index";
+
 let Modal_elemento = ({
   eliminar_elemento,
   imagen_src,
@@ -36,7 +38,6 @@ let Modal_elemento = ({
             style={styles.btn_borrar}
             title="Borrar"
             onPress={() => {
-              alert(llave);
               eliminar_elemento(llave);
             }}
             color="red"
@@ -68,11 +69,8 @@ const mapDispatch_modal_elemento = (dispatch, ownProps) => {
   return {
     esconder_modal: () => dispatch({ type: "CERRAR-MODAL" }),
     eliminar_elemento: id => {
-      dispatch({
-        type: "DELETE-ELEMENTO",
-        id
-      });
-      dispatch({ type: "CERRAR-MODAL" });
+      dispatch(delete_elemento({ id }));
+      dispatch(close_modal());
     }
   };
 };

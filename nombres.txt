@@ -1,0 +1,1 @@
+("perdidas_normalizadas","fabricante","tipo_combustible","aspiracion","numero_puertas","tipo_carroseria","tipo_llantas","largo","ancho","alto","peso_absoluto","tipo_motor","numero_cilindros",tamanio_motor","radio_compresion","caballos_fuerza","rpm","km_ciudad","km_carretera","precio")
