@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Platform, StyleSheet, View, TextInput, Button } from "react-native";
 import { connect } from "react-redux";
 import { delete_nombre, add_elemento } from "../../redux/actions/index";
-
+import IconBtn from "./IconBtn";
 let Input_nombre = ({ agrear_elemento, dispatch, nombre_estado }) => {
   let nombre;
   return (
@@ -10,19 +10,18 @@ let Input_nombre = ({ agrear_elemento, dispatch, nombre_estado }) => {
       <TextInput
         style={styles.nombre_input}
         value={nombre_estado}
+        placeholder={"Agregar un elemento"}
         onChangeText={val => {
           dispatch({ type: "MODIFICAR-NOMBRE", texto: val });
         }}
       />
-      <Button
+      <IconBtn
+        style={styles.btn_agregar}
         onPress={() =>
           !!nombre_estado
             ? agrear_elemento(nombre_estado)
             : alert("Agrege un elemento valido!")
         }
-        title="Agregar"
-        color="#841584"
-        accessibilityLabel="Click para agregar un nuevo elemento a la lista!"
       />
     </View>
   );
@@ -33,6 +32,8 @@ const get_state_input_nombre = state => ({
 const mapDispatchToProps = dispatch => ({
   dispatch,
   agrear_elemento: texto => {
+    console.log("Agregar elemento", texto);
+
     dispatch(delete_nombre());
     dispatch(add_elemento({ texto }));
   }
@@ -49,6 +50,9 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     marginTop: 10
+  },
+  btn_agregar: {
+    width: "10%"
   },
   nombre_input: {
     borderWidth: 1,
