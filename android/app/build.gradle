@@ -95,7 +95,6 @@ def enableProguardInReleaseBuilds = false
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
-
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -104,6 +103,7 @@ android {
     defaultConfig {
         applicationId "com.aplicacion_yuda"
         minSdkVersion rootProject.ext.minSdkVersion
+        missingDimensionStrategy "RNN.reactNativeVersion", "reactNative57_5" // See note below!
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
@@ -140,7 +140,9 @@ android {
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
-    implementation "com.facebook.react:react-native:+"  // From node_modules
+        implementation 'com.android.support:design:25.4.0'
+    implementation "com.facebook.react:react-native:"  // From node_modules
+    implementation project(':react-native-navigation')
     compile project(':react-native-vector-icons')
 
 }
@@ -152,3 +154,11 @@ task copyDownloadableDepsToLibs(type: Copy) {
     into 'libs'
 }
 apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
+configurations.all {
+    resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+        def requested = details.requested
+        if (requested.group == 'com.android.support' && requested.name != 'multidex') {
+            details.useVersion "${rootProject.ext.supportLibVersion}"
+        }
+    }
+}
