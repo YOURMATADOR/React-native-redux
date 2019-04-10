@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Platform, StyleSheet, Text, View, FlatList } from "react-native";
+import { Platform, StyleSheet, Text,Button, View, FlatList } from "react-native";
 import { connect } from "react-redux";
 import Lista_elemento from "./Elemento_lista";
 import riven_imagen from "../assets/img/riven.jpg";
@@ -10,7 +10,7 @@ let Lista_elementos = ({ items }) => (
       <FlatList
         style={styles.lista}
         data={items}
-        keyExtractor={({id})=> id}
+        keyExtractor={({ id }) => id}
         renderItem={({ item }) => (
           <Lista_elemento
             activo={item.estado}

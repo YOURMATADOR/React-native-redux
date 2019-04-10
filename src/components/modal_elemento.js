@@ -14,47 +14,53 @@ import { connect } from "react-redux";
 
 import { delete_elemento, close_modal } from "../../redux/actions/index";
 
-let Modal_elemento = ({
-  eliminar_elemento,
-  imagen_src,
-  llave,
-  texto,
-  estado,
-  esconder_modal
-}) => (
-  <View>
-    <Modal
-      animationType="slide"
-      transparent={false}
-      visible={estado}
-      onRequestClose={esconder_modal}
-    >
-      {!!estado && (
-        <View style={styles.container_modal}>
-          <Text style={styles.titulo}>{texto}</Text>
-          <Image style={styles.imagen} source={imagen_src} />
+class Modal_elemento extends Component {
+  render() {
+    alert(JSON.stringify(this.props))
+    let {
+      eliminar_elemento,
+      imagen_src,
+      llave,
+      texto,
+      estado,
+      esconder_modal
+    } = this.props;
+    return (
+      <View>
+        <Modal
+          animationType="slide"
+          transparent={false}
+          visible={estado}
+          onRequestClose={esconder_modal}
+        >
+          {!!estado && (
+            <View style={styles.container_modal}>
+              <Text style={styles.titulo}>{texto}</Text>
+              <Image style={styles.imagen} source={imagen_src} />
 
-          <Button
-            style={styles.btn_borrar}
-            title="Borrar"
-            onPress={() => {
-              eliminar_elemento(llave);
-            }}
-            color="red"
-            accessibilityLabel="Click para eliminar el elemento"
-          />
-          <Button
-            style={styles.btn_volver}
-            title="volver"
-            color="blue"
-            onPress={esconder_modal}
-            accessibilityLabel="Click para volver a la lista de elementos"
-          />
-        </View>
-      )}
-    </Modal>
-  </View>
-);
+              <Button
+                style={styles.btn_borrar}
+                title="Borrar"
+                onPress={() => {
+                  eliminar_elemento(llave);
+                }}
+                color="red"
+                accessibilityLabel="Click para eliminar el elemento"
+              />
+              <Button
+                style={styles.btn_volver}
+                title="volver"
+                color="blue"
+                onPress={esconder_modal}
+                accessibilityLabel="Click para volver a la lista de elementos"
+              />
+            </View>
+          )}
+        </Modal>
+      </View>
+    );
+  }
+}
 
 const mapState_modal_elemento = state => {
   return {

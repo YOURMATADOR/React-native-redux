@@ -1,68 +1,50 @@
 import { Navigation } from "react-native-navigation";
+import Icon from "react-native-vector-icons/FontAwesome";
 
-const go_screen_one = () =>
-  Navigation.setRoot({
-    root: {
-      bottomTabs: {
-        id: "bottom_tabs_id",
-        children: [
-          {
-            component: {
-              name: "pantalla_uno",
-              options: {
-                bottomTab: {
-                  fontSize: 12,
-                  text: "Uno"
-                }
-              }
-            }
-          },
-          {
-            component: {
-              name: "pantalla_dos",
-              options: {
-                bottomTab: {
-                  fontSize: 12,
-                  text: "dos"
-                }
-              }
-            }
-          }
-        ]
-      }
-    }
-  });
-const go_screen_two = () =>
-  Navigation.setRoot({
-    root: {
-      bottomTabs: {
-        id: "bottom_tabs_id",
-        children: [
-          {
-            component: {
-              name: "pantalla_uno",
-              options: {
-                bottomTab: {
-                  fontSize: 12,
-                  text: "Uno"
-                }
-              }
-            }
-          },
-          {
-            component: {
-              name: "pantalla_dos",
-              options: {
-                bottomTab: {
-                  fontSize: 12,
-                  text: "dos"
-                }
-              }
-            }
-          }
-        ]
-      }
-    }
-  });
+const go_lista_lugares = async () => {
+  try {
+    let plus_square_icon = await Icon.getImageSource("plus-square", 20);
+    let list_icon = await Icon.getImageSource("list", 20);
 
-export { go_screen_two, go_screen_one };
+    await Navigation.setRoot({
+      root: {
+        bottomTabs: {
+          id: "bottom_tabs_id",
+          children: [
+            {
+              component: {
+                name: "curso.lista_elementos",
+                options: {
+                  bottomTab: {
+                    fontSize: 12,
+                    text: "Lista",
+                    icon: list_icon
+                  }
+                }
+              }
+            },
+            {
+              component: {
+                name: "curso.registro_elementos",
+                options: {
+                  bottomTab: {
+                    fontSize: 12,
+                    text: "Agregar",
+                    icon: plus_square_icon
+                  }
+                }
+              }
+            }
+          ],
+          options:{
+            animations:{}
+          }
+        },
+        
+      }
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+export { go_lista_lugares };

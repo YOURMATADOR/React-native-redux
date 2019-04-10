@@ -1,23 +1,33 @@
 import React, { Component } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, Button } from "react-native";
 import { Provider } from "react-redux";
-import { store } from "./redux/config";
-import { Navigation } from "react-native-navigation";
 
+import { store } from "./redux/config";
 import Modal_elemento from "./src/components/modal_elemento";
 import Input_nombre from "./src/components/Agregar_nombre";
 import Lista_elementos from "./src/components/Lista_elementos";
-import register_screens from "./src/screens/index";
 import Navegacion from "./src/components/Navegacion";
+import Login from "./src/screens/Login";
 
+import { createStackNavigator, createAppContainer } from "react-navigation";
 
-export default class App extends Component {
+class App extends Component {
   state = {
     nombre: ""
   };
+  static navigationOptions = {
+    headerTitle: "Hola",
+    headerRight: (
+      <Button
+        onPress={() => alert("This is a button!")}
+        title="Info"
+        color="red"
+      />
+    )
+  };
   render() {
     console.log(this.props);
-    
+
     return (
       <Provider store={store}>
         <View style={styles.container}>
@@ -44,3 +54,28 @@ const styles = StyleSheet.create({
     margin: 10
   }
 });
+
+//* navegacion por stack o por apilamiento
+const App_navigator = createStackNavigator(
+  {
+    Home: {
+      screen: App
+    },
+    Login: {
+      screen: Login
+    }
+  },
+  {
+    initialRouteName: "Home",
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: "#f4511e"
+      },
+      headerTintColor: "#fff",
+      headerTitleStyle: {
+        fontWeight: "bold"
+      }
+    }
+  }
+);
+export default createAppContainer(App_navigator);
