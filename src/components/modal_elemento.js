@@ -16,7 +16,6 @@ import { delete_elemento, close_modal } from "../../redux/actions/index";
 
 class Modal_elemento extends Component {
   render() {
-    alert(JSON.stringify(this.props))
     let {
       eliminar_elemento,
       imagen_src,

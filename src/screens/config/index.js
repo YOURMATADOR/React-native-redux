@@ -1,21 +1,25 @@
-import Registro_elementos from "../Registro_elementos";
-import Lista_elementos from "../Lista_elementos";
-import Login from "../Login";
 import { store } from "../../../redux/config";
-import { name as appName } from "../../../app.json";
+import Icon_badge from "../../components/Icon_badge";
+import Login from "../Login";
 import App from "../../../App";
-
-const { Navigation } = require("react-native-navigation");
+import Lista_elementos from "../Lista_elementos";
+import Registro_elementos from "../Registro_elementos";
+import Side_bar from "../Side_bar";
 import Grapper from "./redux_grapper";
 
-const register_screens = () => {
-  Navigation.registerComponent("curso.lista_elementos", () =>
-    Grapper(Lista_elementos, store)
-  );
-  Navigation.registerComponent("curso.registro_elementos", () =>
+import { Navigation } from "react-native-navigation";
+
+const regiter_routes = () => {
+  Navigation.registerComponent("Curso.Sidebar", Grapper(Side_bar, store));
+  Navigation.registerComponent("Curso.Login", Grapper(Login, store));
+  Navigation.registerComponent(
+    "Curso.Registro",
     Grapper(Registro_elementos, store)
   );
-  Navigation.registerComponent("curso.login", () => Grapper(Login, store));
-  Navigation.registerComponent(appName, () => Grapper(App, store));
+  Navigation.registerComponent(
+    "Curso.Listado",
+    Grapper(Lista_elementos, store)
+  );
 };
-export default register_screens;
+
+export default regiter_routes;

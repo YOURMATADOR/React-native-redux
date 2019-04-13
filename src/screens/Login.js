@@ -1,36 +1,52 @@
 import React, { Component } from "react";
-import { StyleSheet, View, Image, Button } from "react-native";
-import login_logo from "../assets/img/login_logo.png";
-import { go_lista_lugares } from "./navigation/navegation";
+import { StyleSheet, View, Image, Button, TextInput, Text,StatusBar } from "react-native";
+import { Navigation } from "react-native-navigation";
 
-const Login = () => (
-  <View style={styles.container}>
-    <Image source={login_logo} style={styles.login_logo} />
-    <Button
-      onPress={go_lista_lugares}
-      title="ingresar!"
-      color="blue"
-      style={styles.button_login}
-    />
-  </View>
-);
+import login_logo from "../assets/img/login_logo.png";
+import Text_title from "../components/ui/Text_title";
+import Form_input from "../components/ui/Form_input";
+import Form_button from "../components/ui/Form_button";
+import { go_lista_lugares } from "./navigation/navegation";
+import {secundario} from '../components/ui/colores';
+import Statusbar from '../components/ui/Statusbar';
+
+class Login extends Component {
+  render() {
+    return (
+      <View style={styles.background}>
+      <Statusbar/>
+      <View style={styles.container}>
+          <Text_title>Ingresar</Text_title>
+          <Form_input placeholder="Usuario" />
+          <Form_input placeholder="Contraseña" />
+          <Form_button
+            width={"100%"}
+            onPress={() => go_lista_lugares()}
+            style={styles.button_login}
+          >
+            Ingresar
+          </Form_button>
+        </View>
+      </View>
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: "80%",
-    alignItems: "stretch",
-    alignContent: "center",
+    alignItems: "center",
     alignSelf: "center",
-    justifyContent: "space-around"
+    justifyContent: "center"
   },
-  login_logo: {
-    width: "100%",
-    height: "50%"
+  background: {
+    backgroundColor: secundario,
+    flex: 1,
+    width: "100%"
   },
   button_login: {
-    width: "80%",
-    flex: 1
+    width: "100%"
   }
 });
 

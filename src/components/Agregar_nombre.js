@@ -1,10 +1,17 @@
 import React, { Component } from "react";
 import { Platform, StyleSheet, View, TextInput, Button } from "react-native";
 import { connect } from "react-redux";
+import { Navigation } from "react-native-navigation";
+
 import { delete_nombre, add_elemento } from "../../redux/actions/index";
 import IconBtn from "./IconBtn";
-let Input_nombre = ({ agrear_elemento, dispatch, nombre_estado }) => {
-  let nombre;
+
+let Input_nombre = ({
+  agrear_elemento,
+  dispatch,
+  nombre_estado,
+  navigator
+}) => {
   return (
     <View style={styles.contenedor}>
       <TextInput
@@ -23,6 +30,19 @@ let Input_nombre = ({ agrear_elemento, dispatch, nombre_estado }) => {
             : alert("Agrege un elemento valido!")
         }
       />
+      <Button
+        title="Abrir modal"
+        color="red"
+        onPress={() =>
+          Navigation.mergeOptions("Drawer", {
+            sideMenu: {
+              left: {
+                visible: true
+              }
+            }
+          })
+        }
+      />
     </View>
   );
 };
@@ -33,7 +53,6 @@ const mapDispatchToProps = dispatch => ({
   dispatch,
   agrear_elemento: texto => {
     console.log("Agregar elemento", texto);
-
     dispatch(delete_nombre());
     dispatch(add_elemento({ texto }));
   }

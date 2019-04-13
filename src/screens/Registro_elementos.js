@@ -1,14 +1,21 @@
 import React, { Component } from "react";
 import { StyleSheet, View } from "react-native";
+import { Provider } from "react-redux";
 
+import { store } from "../../redux/config";
 import Input_nombre from "../components/Agregar_nombre";
 
-
-const Registro_elementos = () => (
-  <View style={styles.container}>
-    <Input_nombre />
-  </View>
-);
+class Registro_elementos extends Component {
+  render() {
+    return (
+      <Provider store={store}>
+        <View style={styles.container}>
+          <Input_nombre />
+        </View>
+      </Provider>
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   container: {
