@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Platform, StyleSheet, View, TextInput, Button } from "react-native";
 import { connect } from "react-redux";
-import { Navigation } from "react-native-navigation";
 
 import { delete_nombre, add_elemento } from "../../redux/actions/index";
 import IconBtn from "./IconBtn";
@@ -30,19 +29,7 @@ let Input_nombre = ({
             : alert("Agrege un elemento valido!")
         }
       />
-      <Button
-        title="Abrir modal"
-        color="red"
-        onPress={() =>
-          Navigation.mergeOptions("Drawer", {
-            sideMenu: {
-              left: {
-                visible: true
-              }
-            }
-          })
-        }
-      />
+     
     </View>
   );
 };

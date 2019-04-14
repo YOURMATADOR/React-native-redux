@@ -1,21 +1,24 @@
-
 import React, { Component } from "react";
 import { StyleSheet, View } from "react-native";
-import { Provider } from "react-redux";
+import { connect } from "react-redux";
 
 import { store } from "../../redux/config";
 import Modal_elemento from "../components/modal_elemento";
 import Lista_elementos from "../components/Lista_elementos";
+import Topbar from "../components/ui/Topbar";
 
-
-const Lista_lugares = () => (
-  <Provider store={store}>
+let Lista_lugares = ({ ruta }) => (
   <View style={styles.container}>
+    <Topbar ruta={ruta} />
     <Lista_elementos />
     <Modal_elemento />
   </View>
-  </Provider>
 );
+
+const mapStateToProps = state => ({
+  ruta: state.rutas
+});
+Lista_lugares = connect(mapStateToProps)(Lista_lugares);
 
 const styles = StyleSheet.create({
   container: {

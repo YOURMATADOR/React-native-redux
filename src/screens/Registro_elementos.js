@@ -1,21 +1,27 @@
 import React, { Component } from "react";
 import { StyleSheet, View } from "react-native";
-import { Provider } from "react-redux";
+import { connect } from "react-redux";
 
-import { store } from "../../redux/config";
 import Input_nombre from "../components/Agregar_nombre";
+import Topbar from "../components/ui/Topbar";
 
 class Registro_elementos extends Component {
   render() {
     return (
-      <Provider store={store}>
         <View style={styles.container}>
+          <Topbar
+            ruta ={this.props.ruta}
+          />
           <Input_nombre />
         </View>
-      </Provider>
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  ruta: state.rutas
+})
+Registro_elementos = connect(mapStateToProps)(Registro_elementos)
 
 const styles = StyleSheet.create({
   container: {

@@ -7,7 +7,7 @@ import {primario} from './colores';
 
 const Statusbar = () => (
   <StatusBar
-    translucent={false}
+    translucent={true}
     backgroundColor={primario}
     barStyle="light-content"
   />

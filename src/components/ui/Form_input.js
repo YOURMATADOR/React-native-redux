@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 2,
     borderRadius: 5,
     margin: 8,
-    padding: 3,
+    padding: 10,
     fontWeight:"bold"
   }
 });

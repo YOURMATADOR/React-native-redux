@@ -2,14 +2,16 @@ import React, { Component } from "react";
 import {
   StyleSheet,
   View,
-  Image,
   Button,
   TextInput,
   Text,
   ImageBackground,
-  Dimensions
+  Dimensions,
+  Image
 } from "react-native";
-import fondo_imagen from "../assets/img/fondo_side.jpg";
+
+import fondo_imagen from "../assets/img/bright-squares.png"
+
 import imagen_perfil from "../assets/img/perfil.jpg";
 import { fondo, secundario, primario } from "../components/ui/colores";
 let { height, width } = Dimensions.get("window");
@@ -19,7 +21,10 @@ class Side_bar extends React.Component {
     return (
       <View style={styles.container}>
         <View style={styles.user_info}>
-          <ImageBackground source={fondo_imagen} style={styles.fondo_imagen}>
+          <ImageBackground
+            source={fondo_imagen}
+            style={styles.fondo_imagen}
+          >
             <View style={styles.perfil_container}>
               <View style={styles.perfil_container_imagen}>
                 <Image
@@ -83,6 +88,7 @@ const styles = StyleSheet.create({
   fondo_imagen: {
     height: "100%",
     width: "100%",
+    backgroundColor:secundario,
     justifyContent: "center",
     alignItems: "center"
   }

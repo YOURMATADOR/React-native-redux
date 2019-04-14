@@ -31,6 +31,7 @@ const go_lista_lugares = async () => {
                 {
                   component: {
                     name: "Curso.Listado",
+                    id:"Listado",
                     options: {
                       bottomTab: {
                         fontSize: 12,
@@ -43,6 +44,7 @@ const go_lista_lugares = async () => {
                 {
                   component: {
                     name: "Curso.Registro",
+                    id:"Registro",
                     options: {
                       bottomTab: {
                         fontSize: 12,

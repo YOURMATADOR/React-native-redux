@@ -1,4 +1,6 @@
 import { lista, nombre, modal_lista_item } from "./reducers/lista";
+import rutas from "./reducers/rutas";
+
 import { createStore, combineReducers, compose } from "redux";
 
 let estado_modal = {
@@ -14,7 +16,7 @@ if (__DEV__) {
   composeEnharcer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 }
 let store = createStore(
-  combineReducers({ modal_lista_item, lista, nombre }),
+  combineReducers({ modal_lista_item, lista, nombre, rutas }),
   estado_modal,
   composeEnharcer()
 );

@@ -7,3 +7,7 @@ export {
   close_modal,
   open_modal
 } from "./lista";
+
+export {
+  set_ruta
+} from "./rutas"
