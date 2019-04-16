@@ -12,7 +12,12 @@ const OPEN_MODAL = "ABRIR-MODAL";
 const CLOSE_MODAL = "CERRAR-MODAL";
 
 //* Rutas types
-const SET_ACTUAL_ROUTE ="SET-ACTUAL-ROUTE"
+const SET_ACTUAL_ROUTE = "SET-ACTUAL-ROUTE";
+
+//* posicion types
+const SET_ACTUAL_POSITION = "SET-ACTUAL-POSITION";
+const PORTRAIT = "portrait";
+const LANDSCAPE = "landscape";
 
 export {
   DELETE_NOMBRE,
@@ -22,5 +27,8 @@ export {
   MODIFY_NOMBRE,
   OPEN_MODAL,
   CLOSE_MODAL,
-  SET_ACTUAL_ROUTE
+  SET_ACTUAL_ROUTE,
+  SET_ACTUAL_POSITION,
+  PORTRAIT,
+  LANDSCAPE
 };

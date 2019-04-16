@@ -7,8 +7,9 @@ import {
   TextInput,
   Text,
   StatusBar,
-  Dimensions
+  Dimensions,
 } from "react-native";
+import {connect} from 'react-redux'
 import { Navigation } from "react-native-navigation";
 
 import login_logo from "../assets/img/linux.png";
@@ -30,7 +31,7 @@ class Login extends Component {
             <Image source={login_logo} style={styles.logo_container_image} />
           </View>
           <View style={styles.login_container}>
-            <Text_title>Ingresar</Text_title>
+            <Text_title>Ingresar!</Text_title>
             <Form_input placeholder="Usuario" />
             <Form_input placeholder="Contraseña" />
             <Form_button
@@ -46,6 +47,11 @@ class Login extends Component {
     );
   }
 }
+
+let mapDispatchToProps = (state)=> ({
+  position: state.position
+})
+Login = connect(mapDispatchToProps)(Login)
 
 const styles = StyleSheet.create({
   container: {

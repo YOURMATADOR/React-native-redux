@@ -1,17 +1,37 @@
 import { Navigation } from "react-native-navigation";
-import Icon from "react-native-vector-icons/FontAwesome";
+import Icon_android from "react-native-vector-icons/MaterialCommunityIcons";
+import Icon from "react-native-vector-icons/Ionicons";
+import { Platform } from "react-native";
+
+import { primario, seleccion } from "../../components/ui/colores";
 
 const go_lista_lugares = async () => {
   try {
-    let plus_square_icon = await Icon.getImageSource("plus-square", 20);
-    let list_icon = await Icon.getImageSource("list", 20);
+    let plus_square_icon = await Icon.getImageSource("ios-add", 20);
+    let list_icon = await Icon.getImageSource("ios-list", 20);
+
+    if (Platform.OS == "android") {
+      plus_square_icon = await Icon_android.getImageSource(
+        "map-marker-plus",
+        20
+      );
+      list_icon = await Icon_android.getImageSource(
+        "format-list-bulleted-type",
+        20
+      );
+    }
+
     Navigation.setDefaultOptions({
       bottomTab: {
-        selectedIconColor: "#fb8c00"
+        selectedIconColor: "red",
+        textColor: "white",
+        iconColor: "white",
+        selectedTextColor: "white"
       },
       bottomTabs: {
         animate: false,
-        titleDisplayMode: "alwaysShow"
+        titleDisplayMode: "alwaysShow",
+        backgroundColor: primario
       }
     });
     await Navigation.setRoot({

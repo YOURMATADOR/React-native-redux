@@ -9,33 +9,19 @@ import fondo_imagen from "../assets/img/bright-squares.png";
 import { Button } from "react-native-paper";
 import Place_image from "../components/Place_image";
 import Place_map from "../components/Place_map";
-import Cart from "../components/ui/Cart";
+import ScrollCart from "../components/ui/ScrollCart";
 import { secundario, primario } from "../components/ui/colores";
 
 class Registro_elementos extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Statusbar />
         <Topbar ruta={this.props.ruta} />
-        <ScrollView
-          alwaysBounceVertical={true}
-          showsVerticalScrollIndicator={false}
-          style={{ flex: 1 }}
-          contentContainerStyle={{
-            flexGrow: 1,
-            justifyContent: "center",
-            alignContent: "center"
-          }}
-        >
-          <View style={styles.inner_container}>
-            <Cart>
-              <Place_image fondo_imagen={fondo_imagen} />
-              <Place_map />
-              <Input_nombre />
-            </Cart>
-          </View>
-        </ScrollView>
+        <ScrollCart>
+          <Place_image fondo_imagen={fondo_imagen} />
+          <Place_map />
+          <Input_nombre />
+        </ScrollCart>
       </View>
     );
   }
@@ -51,13 +37,8 @@ const styles = StyleSheet.create({
     flex: 1,
     width: "100%",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "flex-start",
     backgroundColor: primario
-  },
-  inner_container: {
-    width: "100%",
-    justifyContent: "center",
-    alignItems: "center"
   },
   welcome: {
     fontSize: 20,

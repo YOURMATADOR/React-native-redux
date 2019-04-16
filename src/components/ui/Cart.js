@@ -10,10 +10,11 @@ const Cart = ({ children, style }) => (
 
 let styles = StyleSheet.create({
   container: {
-    width: "95%",
+    width: "97%",
+    height:"90%",
     backgroundColor: "white",
     borderRadius: 15,
-    alignSelf:"center",
+    alignSelf: "center",
     padding: 10,
   }
 });

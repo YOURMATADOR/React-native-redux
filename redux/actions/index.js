@@ -11,3 +11,7 @@ export {
 export {
   set_ruta
 } from "./rutas"
+
+export {
+  set_position
+} from "./posicion"

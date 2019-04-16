@@ -10,8 +10,10 @@ import { Navigation } from "react-native-navigation";
 
 import App_rutas from "./src/screens/config/index";
 import iniciar_rutas from "./src/screens/config/index";
+import { iniciar_posicion } from './src/screens/config/Posicion'
 
 iniciar_rutas();
+iniciar_posicion();
 
 Navigation.events().registerAppLaunchedListener(() => {
   Navigation.setRoot({

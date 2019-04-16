@@ -4,3 +4,4 @@ export const secundario = "#fff3e0";
 
 export const fondo = "#ff9d3f";
 
+export const seleccion ="#85A577"
