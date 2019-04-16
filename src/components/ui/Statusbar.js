@@ -1,16 +1,15 @@
 import React, { Component } from "react";
-import {
+import { StatusBar } from "react-native";
+import { primario } from "./colores";
 
-  StatusBar
-} from "react-native";
-import {primario} from './colores';
-
-const Statusbar = () => (
+const Statusbar = ({ color = primario, mostrar = true }) => (
   <StatusBar
-    translucent={true}
-    backgroundColor={primario}
+    translucent={false}
+    hidden={false}
+    animated={true}
+    backgroundColor={color}
     barStyle="light-content"
   />
 );
 
-export default Statusbar
+export default Statusbar;

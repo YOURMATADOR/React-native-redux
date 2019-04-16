@@ -6,9 +6,11 @@ import { store } from "../../redux/config";
 import Modal_elemento from "../components/modal_elemento";
 import Lista_elementos from "../components/Lista_elementos";
 import Topbar from "../components/ui/Topbar";
+import Statusbar from "../components/ui/Statusbar";
 
 let Lista_lugares = ({ ruta }) => (
   <View style={styles.container}>
+    <Statusbar />
     <Topbar ruta={ruta} />
     <Lista_elementos />
     <Modal_elemento />

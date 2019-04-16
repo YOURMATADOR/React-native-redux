@@ -31,7 +31,10 @@ const go_lista_lugares = async () => {
                 {
                   component: {
                     name: "Curso.Listado",
-                    id:"Listado",
+                    id: "Listado",
+                    passProps: {
+                      mostrar: false
+                    },
                     options: {
                       bottomTab: {
                         fontSize: 12,
@@ -44,7 +47,10 @@ const go_lista_lugares = async () => {
                 {
                   component: {
                     name: "Curso.Registro",
-                    id:"Registro",
+                    id: "Registro",
+                    passProps: {
+                      mostrar: false
+                    },
                     options: {
                       bottomTab: {
                         fontSize: 12,
@@ -61,11 +67,9 @@ const go_lista_lugares = async () => {
                 }
               }
             }
-          },
-        },
-      
+          }
+        }
       }
-      
     });
   } catch (error) {
     console.log(error);

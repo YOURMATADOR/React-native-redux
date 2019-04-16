@@ -23,6 +23,7 @@ let Input_nombre = ({
       />
       <IconBtn
         style={styles.btn_agregar}
+        name={"ios-add"}
         onPress={() =>
           !!nombre_estado
             ? agrear_elemento(nombre_estado)
@@ -55,7 +56,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginTop: 10
+    margin: 10,
   },
   btn_agregar: {
     width: "10%"

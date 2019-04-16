@@ -18,10 +18,12 @@ Navigation.events().registerAppLaunchedListener(() => {
     root: {
       stack: {
         id: "Stack.id",
+
         children: [
           {
             component: {
               name: "Curso.Login",
+              passProps:{mostrar:true},
               options: { topBar: { height: 0, visible: false } }
             }
           }
