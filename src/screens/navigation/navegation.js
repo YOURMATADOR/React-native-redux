@@ -26,12 +26,15 @@ const go_lista_lugares = async () => {
         selectedIconColor: "red",
         textColor: "white",
         iconColor: "white",
-        selectedTextColor: "white"
+        selectedTextColor: "white",
       },
       bottomTabs: {
         animate: false,
         titleDisplayMode: "alwaysShow",
         backgroundColor: primario
+      },
+      layout: {
+        orientation: ["portrait", "landscape"]
       }
     });
     await Navigation.setRoot({

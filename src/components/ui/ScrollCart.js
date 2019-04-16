@@ -5,7 +5,7 @@ import Cart from "./Cart";
 import { secundario } from "./colores";
 
 const ScrollCart = ({ children, style }) => (
-  <Cart>
+  <Cart style={[style]}>
     <ScrollView
       alwaysBounceVertical={true}
       showsVerticalScrollIndicator={false}

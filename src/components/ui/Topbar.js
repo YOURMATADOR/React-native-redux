@@ -1,14 +1,31 @@
 import React, { Component } from "react";
-import { View, Text, Button, StyleSheet } from "react-native";
+import { View, Text, Button, StyleSheet, Dimensions } from "react-native";
 import { Navigation } from "react-native-navigation";
 
 import { primario } from "./colores";
 import IconBtn from "../IconBtn";
 import { obtener_ruta } from "../../screens/config/obtener_ruta";
+import { connect } from "react-redux";
+import Statusbar from "../ui/Statusbar";
 
-const Topbar = ({ ruta }) => {
+let {width,height} = Dimensions.get('window')
+
+let Topbar = ({ ruta, position ,style}) => {
+  if (position == "portrait") {
+    return (
+      <View style={[styles.container,style]}>
+        <IconBtn
+          name={"ios-menu"}
+          color={"white"}
+          onPress={() => alert("menu")}
+        />
+        <Text style={styles.titulo}>{ruta}</Text>
+      </View>
+    );
+  }
   return (
-    <View style={styles.container}>
+    <View style={[styles.container_land,style]}>
+      <Statusbar hidden={true} />
       <IconBtn
         name={"ios-menu"}
         color={"white"}
@@ -19,8 +36,19 @@ const Topbar = ({ ruta }) => {
   );
 };
 
+let mapDispatchToProps = state => ({
+  position: state.position
+});
+Topbar = connect(mapDispatchToProps)(Topbar);
 const styles = StyleSheet.create({
   container: {
+    width: "100%",
+    height: "10%",
+    backgroundColor: primario,
+    flexDirection: "row",
+    alignItems: "center"
+  },
+  container_land: {
     width: "100%",
     height: "10%",
     backgroundColor: primario,

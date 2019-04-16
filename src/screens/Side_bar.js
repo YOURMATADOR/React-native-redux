@@ -9,8 +9,9 @@ import {
   Dimensions,
   Image
 } from "react-native";
+import { connect } from "react-redux";
 
-import fondo_imagen from "../assets/img/bright-squares.png"
+import fondo_imagen from "../assets/img/bright-squares.png";
 
 import imagen_perfil from "../assets/img/perfil.jpg";
 import { fondo, secundario, primario } from "../components/ui/colores";
@@ -18,18 +19,21 @@ let { height, width } = Dimensions.get("window");
 
 class Side_bar extends React.Component {
   render() {
+    let { position } = this.props;
     return (
       <View style={styles.container}>
-        <View style={styles.user_info}>
-          <ImageBackground
-            source={fondo_imagen}
-            style={styles.fondo_imagen}
-          >
+        <View
+          style={
+            position == "portrait" ? styles.user_info : styles.user_info_land
+          }
+        >
+          <ImageBackground source={fondo_imagen} style={styles.fondo_imagen}>
             <View style={styles.perfil_container}>
               <View style={styles.perfil_container_imagen}>
                 <Image
                   source={imagen_perfil}
-                  style={styles.perfil_container_imagen_imagen}
+                  style={
+                    styles.perfil_container_imagen_imagen}
                 />
               </View>
               <Text
@@ -45,6 +49,10 @@ class Side_bar extends React.Component {
     );
   }
 }
+let mapDispatchToProps = state => ({
+  position: state.position
+});
+Side_bar = connect(mapDispatchToProps)(Side_bar);
 
 const styles = StyleSheet.create({
   container: {
@@ -56,13 +64,23 @@ const styles = StyleSheet.create({
     height: "30%",
     backgroundColor: fondo
   },
-  perfil_container_imagen: {
-    width: width * 0.2,
-    height: width * 0.2,
+  user_info_land: {
+    width: "100%",
+    height: "50%",
+    backgroundColor: fondo
+  },
+  perfil_container_imagen_land: {
+    width: "20%",
+    height: "70%",
     borderRadius: 200,
     borderColor: "white",
     borderWidth: 2,
     overflow: "hidden"
+  },
+  perfil_container_imagen: {
+    width: "25%",
+    height: "50%",
+    overflow: "hidden",
   },
   perfil_container_imagen_imagen: {
     width: "100%",
@@ -73,7 +91,8 @@ const styles = StyleSheet.create({
   perfil_container: {
     height: "100%",
     width: "90%",
-    justifyContent: "space-around"
+    justifyContent: "space-around",
+    elevation:5
   },
   perfil_container_usuario_container_item: {
     fontWeight: "bold",
@@ -88,7 +107,7 @@ const styles = StyleSheet.create({
   fondo_imagen: {
     height: "100%",
     width: "100%",
-    backgroundColor:secundario,
+    backgroundColor: secundario,
     justifyContent: "center",
     alignItems: "center"
   }
