@@ -5,7 +5,7 @@ import {
   Text,
   Image,
   ScrollView,
-  Dimensions
+  Dimensions,
 } from "react-native";
 import { connect } from "react-redux";
 

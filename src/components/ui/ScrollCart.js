@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet, ScrollView } from "react-native";
+import { View, StyleSheet, ScrollView, RefreshControl } from "react-native";
 
 import Cart from "./Cart";
 import { secundario } from "./colores";

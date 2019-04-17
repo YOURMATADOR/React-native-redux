@@ -15,7 +15,7 @@ let Topbar = ({ ruta, position ,style}) => {
     return (
       <View style={[styles.container,style]}>
         <IconBtn
-          name={"ios-menu"}
+          name={"menu"}
           color={"white"}
           onPress={() => alert("menu")}
         />
@@ -27,9 +27,10 @@ let Topbar = ({ ruta, position ,style}) => {
     <View style={[styles.container_land,style]}>
       <Statusbar hidden={true} />
       <IconBtn
-        name={"ios-menu"}
+        name={"menu"}
         color={"white"}
         onPress={() => alert("menu")}
+        style={{width:"5%"}}
       />
       <Text style={styles.titulo}>{ruta}</Text>
     </View>

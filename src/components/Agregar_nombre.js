@@ -23,7 +23,7 @@ let Input_nombre = ({
       />
       <IconBtn
         style={styles.btn_agregar}
-        name={"ios-add"}
+        name={"plus-circle"}
         onPress={() =>
           !!nombre_estado
             ? agrear_elemento(nombre_estado)
