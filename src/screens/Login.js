@@ -13,19 +13,15 @@ import {
   Keyboard
 } from "react-native";
 import { connect } from "react-redux";
-import { Navigation } from "react-native-navigation";
+import { compose, withHandlers, pure } from "recompose";
 
 import login_logo from "../assets/img/linux.png";
 import Text_title from "../components/ui/Text_title";
 import Form_input from "../components/ui/Form_input";
 import Form_button from "../components/ui/Form_button";
-import { go_lista_lugares } from "./navigation/navegation";
 import { secundario, fondo } from "../components/ui/colores";
 import Statusbar from "../components/ui/Statusbar";
-import {
-  user_validator,
-  password_validator
-} from "../../utils/validators/login";
+import { login_state } from "./states/login";
 
 let width = Dimensions.get("window").width;
 Dimensions.addEventListener("change", ({ window }) => {
@@ -35,71 +31,26 @@ Dimensions.addEventListener("change", ({ window }) => {
 class Login extends Component {
   list_inputs = [];
 
-  state = {
-    inputs: {
-      user: { value: "", valid: true, mensaje: "", touched: false },
-      password: { value: "", valid: true, mensaje: "", touched: false }
-    },
-    logo_container_height: new Animated.Value(1)
-  };
-
-  ocultar_logo = () => {
-    this.state.logo_container_height.setValue(1);
-
-    Animated.timing(this.state.logo_container_height, {
-      duration: 100,
-      toValue: 0
-    }).start();
-  };
-  mostrar_logo = () => {
-    this.state.logo_container_height.setValue(0);
-    Animated.timing(this.state.logo_container_height, {
-      duration: 100,
-      toValue: 1
-    }).start();
-  };
-
   componentDidMount() {
-    Keyboard.addListener("keyboardDidShow", this.ocultar_logo);
-    Keyboard.addListener("keyboardDidHide", this.mostrar_logo);
+    Keyboard.addListener("keyboardDidShow", this.props.ocultar_logo);
+    Keyboard.addListener("keyboardDidHide", this.props.mostrar_logo);
   }
   componentWillUnmount() {
-    Keyboard.removeListener("keyboardDidShow", this.ocultar_logo);
-    Keyboard.removeListener("keyboardDidHide", this.mostrar_logo);
+    Keyboard.removeListener("keyboardDidShow", this.props.ocultar_logo);
+    Keyboard.removeListener("keyboardDidHide", this.props.mostrar_logo);
   }
 
-  change_user = user => {
-    this.setState(prev => ({
-      inputs: {
-        ...prev.inputs,
-        user: { valid: user_validator(user), value: user, touched: true }
-      }
-    }));
-  };
-  change_pass = password => {
-    this.setState(prev => ({
-      inputs: {
-        ...prev.inputs,
-        password: {
-          valid: password_validator(password),
-          value: password,
-          touched: true
-        }
-      }
-    }));
-  };
-  ir_home = () => {
-    let llaves = Object.keys(this.state.inputs);
-    if (
-      llaves.every(
-        i => this.state.inputs[i].touched && this.state.inputs[i].valid
-      )
-    ) {
-      go_lista_lugares();
-    }
-  };
   render() {
-    let { position } = this.props;
+    let {
+      position,
+      login_container,
+      logo_container_height,
+      inputs,
+      change_pass,
+      change_user,
+      ir_home
+    } = this.props;
+    console.log(this.props);
     if (position == "portrait") {
       return (
         <KeyboardAvoidingView behavior="height" style={styles.background}>
@@ -109,11 +60,11 @@ class Login extends Component {
               style={[
                 styles.logo_container,
                 {
-                  height: this.state.logo_container_height.interpolate({
+                  height: logo_container_height.interpolate({
                     inputRange: [0, 1],
                     outputRange: ["0%", "30%"]
                   }),
-                  opacity: this.state.logo_container_height
+                  opacity: logo_container_height
                 }
               ]}
             >
@@ -122,29 +73,29 @@ class Login extends Component {
             <View style={styles.login_container}>
               <Text_title>Ingresar!</Text_title>
               <Form_input
-                value={this.state.inputs["user"].value}
-                onChangeText={this.change_user}
+                value={inputs["user"].value}
+                onChangeText={change_user}
                 returnKeyType={"next"}
-                valid={this.state.inputs.user.valid}
+                valid={inputs.user.valid}
                 placeholder="Usuario"
                 autoComplete="off"
                 autoCapitalize="none"
-                mensaje={this.state.inputs.user.mensaje}
+                mensaje={inputs.user.mensaje}
                 ref={e => (this.list_inputs["usuario"] = e)}
                 onSubmitEditing={() => this.list_inputs["contrasenia"].focus()}
               />
               <Form_input
                 secureTextEntry={true}
-                valid={this.state.inputs.password.valid}
-                onChangeText={this.change_pass}
-                mensaje={this.state.inputs.password.mensaje}
-                value={this.state.inputs["password"].value}
+                valid={inputs.password.valid}
+                onChangeText={change_pass}
+                mensaje={inputs.password.mensaje}
+                value={inputs["password"].value}
                 ref={e => (this.list_inputs["contrasenia"] = e)}
                 placeholder="Contraseña"
               />
               <Form_button
                 width={"100%"}
-                onPress={this.ir_home}
+                onPress={ir_home}
                 style={styles.button_login}
               >
                 Ingresar
@@ -161,29 +112,29 @@ class Login extends Component {
           <View style={styles.login_container_land}>
             <Text_title>Ingresar!</Text_title>
             <Form_input
-              value={this.state.inputs["user"].value}
-              onChangeText={this.change_user}
+              value={inputs["user"].value}
+              onChangeText={change_user}
               returnKeyType={"next"}
               autoComplete="off"
               autoCapitalize="none"
-              valid={this.state.inputs.user.valid}
+              valid={inputs.user.valid}
               placeholder="Usuario"
-              mensaje={this.state.inputs.user.mensaje}
+              mensaje={inputs.user.mensaje}
               ref={e => (this.list_inputs["usuario"] = e)}
               onSubmitEditing={() => this.list_inputs["contrasenia"].focus()}
             />
             <Form_input
               secureTextEntry={true}
-              valid={this.state.inputs.password.valid}
-              onChangeText={this.change_pass}
-              mensaje={this.state.inputs.password.mensaje}
-              value={this.state.inputs["password"].value}
+              valid={inputs.password.valid}
+              onChangeText={change_pass}
+              mensaje={inputs.password.mensaje}
+              value={inputs["password"].value}
               ref={e => (this.list_inputs["contrasenia"] = e)}
               placeholder="Contraseña"
             />
             <Form_button
               width={"100%"}
-              onPress={this.ir_home}
+              onPress={ir_home}
               style={styles.button_login_land}
             >
               Ingresar
@@ -194,11 +145,6 @@ class Login extends Component {
     );
   }
 }
-
-let mapDispatchToProps = state => ({
-  position: state.position
-});
-Login = connect(mapDispatchToProps)(Login);
 
 const styles = StyleSheet.create({
   container: {
@@ -266,4 +212,13 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Login;
+let mapDispatchToProps = state => ({
+  position: state.position,
+  amazing: "Hola que ace!"
+});
+
+export default compose(
+  pure,
+  login_state,
+  connect(mapDispatchToProps)
+)(Login);

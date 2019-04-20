@@ -5,13 +5,15 @@
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
-    "android": "cd android && gradlew app:assembleDebug && gradlew installDebug"
+    "android": "react-native run-android"
   },
   "dependencies": {
     "babel-preset-react-native": "^4.0.1",
+    "pure": "^2.85.0",
     "react": "16.8.3",
     "react-native": "0.59.3",
     "react-native-gesture-handler": "^1.1.0",
+    "react-native-maps": "^0.24.2",
     "react-native-navigation": "^2.17.0",
     "react-native-paper": "^2.15.2",
     "react-native-remote-svg": "^2.0.3",
@@ -20,6 +22,7 @@
     "react-navigation-drawer": "^1.2.1",
     "react-navigation-material-bottom-tabs": "^1.0.0",
     "react-redux": "^6.0.1",
+    "recompose": "^0.30.0",
     "redux": "^4.0.1",
     "uuid": "^3.3.2",
     "validator": "^10.11.0"

@@ -13,6 +13,7 @@ import {
 import { connect } from "react-redux";
 
 import { delete_elemento, close_modal } from "../../redux/actions/index";
+import StaticMap from "./StaticMap";
 
 class Modal_elemento extends Component {
   render() {
@@ -22,7 +23,8 @@ class Modal_elemento extends Component {
       llave,
       texto,
       estado,
-      esconder_modal
+      esconder_modal,
+      coordenadas
     } = this.props;
     return (
       <View>
@@ -36,7 +38,7 @@ class Modal_elemento extends Component {
             <View style={styles.container_modal}>
               <Text style={styles.titulo}>{texto}</Text>
               <Image style={styles.imagen} source={imagen_src} />
-
+              <StaticMap {...coordenadas} />
               <Button
                 style={styles.btn_borrar}
                 title="Borrar"
@@ -67,7 +69,8 @@ const mapState_modal_elemento = state => {
     imagen_src: state.modal_lista_item.imagen,
     llave: state.modal_lista_item.key,
     texto: state.modal_lista_item.texto,
-    estado: state.modal_lista_item.estado
+    estado: state.modal_lista_item.estado,
+    coordenadas: state.modal_lista_item.coordenadas
   };
 };
 const mapDispatch_modal_elemento = (dispatch, ownProps) => {

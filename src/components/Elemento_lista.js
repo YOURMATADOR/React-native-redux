@@ -10,13 +10,14 @@ import {
 import { connect } from "react-redux";
 
 import { delete_elemento, open_modal } from "../../redux/actions/index";
+import StaticMap from "./StaticMap";
 
 let Lista_elemento = ({
   imagen_src,
   children,
   activo,
   abrir_modal,
-  eliminar_elemento
+  eliminar_elemento,
 }) => (
   <TouchableOpacity onPress={abrir_modal} style={styles.contenedor_lista_item}>
     <Image style={styles.imagen_item} source={imagen_src} />
@@ -77,7 +78,8 @@ const mapDispatch_lista_elemento = (dispatch, ownProps) => ({
       open_modal({
         key: ownProps.numero,
         imagen: ownProps.imagen_src,
-        texto: ownProps.children
+        texto: ownProps.children,
+        coordenadas:ownProps.coordenadas
       })
     );
   },

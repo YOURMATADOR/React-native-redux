@@ -36,7 +36,6 @@ class Cart extends React.Component {
     let { children, style } = this.props;
     return (
       <TouchableWithoutFeedback
-        onBlur={this.sacarCarta}
         onPress={this.oprimirCarta}
       >
         <Animated.View

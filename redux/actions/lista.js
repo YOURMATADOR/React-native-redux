@@ -10,8 +10,9 @@ import {
 
 import uuid from "uuid/v4";
 
-const add_elemento = ({ texto }) => ({
+const add_elemento = ({ texto,coordenadas}) => ({
   type: ADD_ELEMENTO,
+  coordenadas,
   texto,
   id: uuid()
 });
@@ -35,12 +36,13 @@ const delete_nombre = () => ({
   type: DELETE_NOMBRE
 });
 
-const open_modal = ({ imagen, key, texto }) => ({
+const open_modal = ({ imagen, key, texto,coordenadas}) => ({
   type: OPEN_MODAL,
   imagen,
   key,
   texto,
-  estado: true
+  estado: true,
+  coordenadas
 });
 
 const close_modal = () => ({

@@ -19,8 +19,20 @@ const SET_ACTUAL_POSITION = "SET-ACTUAL-POSITION";
 const PORTRAIT = "portrait";
 const LANDSCAPE = "landscape";
 
+//* maps types
+const MAP_ADD_PLACE_INITIAL_STATE = {
+  map_addPlace: {
+    latitude: 37.78825,
+    longitude: -122.4324,
+    latitudeDelta: 0.015,
+    longitudeDelta: 0.0121
+  }
+};
+const SET_NEW_REGION = "SET-NEW-REGION"
 export {
   DELETE_NOMBRE,
+  SET_NEW_REGION,
+  MAP_ADD_PLACE_INITIAL_STATE,
   ADD_ELEMENTO,
   TOGGLE_ELEMENTO,
   DELETE_ELEMENTO,

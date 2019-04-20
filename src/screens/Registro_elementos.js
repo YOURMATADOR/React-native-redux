@@ -5,7 +5,7 @@ import {
   Text,
   Image,
   ScrollView,
-  Dimensions,
+  Dimensions
 } from "react-native";
 import { connect } from "react-redux";
 
@@ -18,7 +18,7 @@ import Place_image from "../components/Place_image";
 import Place_map from "../components/Place_map";
 import ScrollCart from "../components/ui/ScrollCart";
 import { secundario, primario } from "../components/ui/colores";
-
+import { set_new_region } from "../../redux/actions/maps";
 
 class Registro_elementos extends Component {
   render() {
@@ -29,8 +29,8 @@ class Registro_elementos extends Component {
           <Topbar ruta={this.props.ruta} />
           <ScrollCart>
             <Place_image fondo_imagen={fondo_imagen} />
-            <Place_map />
-            <Input_nombre />
+            <Place_map mapName={"add_place_map"} />
+            <Input_nombre mapName={"add_place_map"} />
           </ScrollCart>
         </View>
       );
@@ -40,8 +40,8 @@ class Registro_elementos extends Component {
         <Topbar ruta={this.props.ruta} />
         <ScrollCart style={styles.scrollCart_land}>
           <Place_image fondo_imagen={fondo_imagen} />
-          <Place_map />
-          <Input_nombre />
+          <Place_map nombre_mapa={"agregar lugar"} />
+          <Input_nombre mapName={"add_place_map"} />
         </ScrollCart>
       </View>
     );
@@ -52,7 +52,10 @@ const mapStateToProps = state => ({
   ruta: state.rutas,
   position: state.position
 });
-Registro_elementos = connect(mapStateToProps)(Registro_elementos);
+
+Registro_elementos = connect(
+  mapStateToProps,
+)(Registro_elementos);
 
 const styles = StyleSheet.create({
   container: {

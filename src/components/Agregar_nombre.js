@@ -2,51 +2,46 @@ import React, { Component } from "react";
 import { Platform, StyleSheet, View, TextInput, Button } from "react-native";
 import { connect } from "react-redux";
 
-import { delete_nombre, add_elemento } from "../../redux/actions/index";
 import IconBtn from "./IconBtn";
-
-let Input_nombre = ({
-  agrear_elemento,
-  dispatch,
-  nombre_estado,
-  navigator
-}) => {
+import { add_elemento, delete_nombre } from "../../redux/actions/lista";
+let Input_nombre = ({ texto, coordenadas, onChangeText, onPress }) => {
   return (
     <View style={styles.contenedor}>
       <TextInput
         style={styles.nombre_input}
-        value={nombre_estado}
+        value={texto}
         placeholder={"Agregar un elemento"}
-        onChangeText={val => {
-          dispatch({ type: "MODIFICAR-NOMBRE", texto: val });
-        }}
+        onChangeText={onChangeText}
       />
       <IconBtn
         style={styles.btn_agregar}
         name={"plus-circle"}
-        onPress={() =>
-          !!nombre_estado
-            ? agrear_elemento(nombre_estado)
-            : alert("Agrege un elemento valido!")
-        }
+        onPress={() => onPress(texto, coordenadas)}
       />
-     
     </View>
   );
 };
-const get_state_input_nombre = state => ({
-  nombre_estado: state.nombre
+const mapStateToProps = (state, ownProps) => ({
+  texto: state.nombre,
+  coordenadas: !!state.maps[ownProps.mapName]
+    ? state.maps[ownProps.mapName]
+    : state.maps
 });
 const mapDispatchToProps = dispatch => ({
-  dispatch,
-  agrear_elemento: texto => {
-    console.log("Agregar elemento", texto);
-    dispatch(delete_nombre());
-    dispatch(add_elemento({ texto }));
+  onChangeText: texto => {
+    dispatch({ type: "MODIFICAR-NOMBRE", texto });
+  },
+  onPress: (texto, coordenadas) => {
+    if (texto) {
+      dispatch(delete_nombre());
+      dispatch(add_elemento({ texto, coordenadas }));
+    } else {
+      alert("Agrega un lugar valido!");
+    }
   }
 });
 Input_nombre = connect(
-  get_state_input_nombre,
+  mapStateToProps,
   mapDispatchToProps
 )(Input_nombre);
 
@@ -56,7 +51,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    margin: 10,
+    margin: 10
   },
   btn_agregar: {
     width: "10%"

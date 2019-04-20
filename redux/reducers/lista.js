@@ -12,7 +12,15 @@ import {
 const lista = (status = [], action) => {
   switch (action.type) {
     case ADD_ELEMENTO:
-      return [...status, { id: action.id, texto: action.texto, estado: false }];
+      return [
+        ...status,
+        {
+          id: action.id,
+          texto: action.texto,
+          estado: false,
+          coordenadas: action.coordenadas
+        }
+      ];
     case TOGGLE_ELEMENTO:
       return [
         ...status.map((e, i) =>
@@ -42,7 +50,8 @@ const modal_lista_item = (status = {}, action) => {
         imagen: action.imagen,
         key: action.key,
         texto: action.texto,
-        estado: action.estado
+        estado: action.estado,
+        coordenadas:action.coordenadas
       };
     case CLOSE_MODAL:
       return { imagen: "", key: "", texto: "", estado: false };

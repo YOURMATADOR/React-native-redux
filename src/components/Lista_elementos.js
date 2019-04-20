@@ -12,6 +12,7 @@ import { connect } from "react-redux";
 import Lista_elemento from "./Elemento_lista";
 import riven_imagen from "../assets/img/riven.jpg";
 import IconBtn from "./IconBtn";
+import StaticMap from "../components/StaticMap";
 
 class Lista_elementos extends React.Component {
   state = {
@@ -49,6 +50,7 @@ class Lista_elementos extends React.Component {
             renderItem={({ item }) => (
               <Animated.View style={{ opacity: this.state.opacity_elemento }}>
                 <Lista_elemento
+                  coordenadas={item.coordenadas}
                   activo={item.estado}
                   imagen_src={riven_imagen}
                   numero={item.id}
@@ -85,7 +87,7 @@ const styles = StyleSheet.create({
     width: "100%",
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 5,
+    marginTop: 5
   },
 
   lista: {

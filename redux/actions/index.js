@@ -8,10 +8,8 @@ export {
   open_modal
 } from "./lista";
 
-export {
-  set_ruta
-} from "./rutas"
+export { set_ruta } from "./rutas";
 
-export {
-  set_position
-} from "./posicion"
+export { set_position } from "./posicion";
+
+export { set_new_region } from "./maps";
