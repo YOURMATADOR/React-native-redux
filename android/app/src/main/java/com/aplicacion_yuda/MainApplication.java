@@ -3,6 +3,7 @@ package com.aplicacion_yuda;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.imagepicker.ImagePickerPackage;
 import com.airbnb.android.react.maps.MapsPackage;
 import com.horcrux.svg.SvgPackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
@@ -41,7 +42,8 @@ public class MainApplication extends NavigationApplication {
         // No need to add RnnPackage and MainReactPackage
         return Arrays.<ReactPackage>asList(
          new VectorIconsPackage(),
-                         new MapsPackage()
+                         new MapsPackage(),
+                          new ImagePickerPackage()
 
         );
     }

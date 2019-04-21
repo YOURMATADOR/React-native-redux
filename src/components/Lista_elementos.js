@@ -52,7 +52,7 @@ class Lista_elementos extends React.Component {
                 <Lista_elemento
                   coordenadas={item.coordenadas}
                   activo={item.estado}
-                  imagen_src={riven_imagen}
+                  imagen_src={item.uri}
                   numero={item.id}
                 >
                   {item.texto}

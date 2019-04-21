@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 import IconBtn from "./IconBtn";
 import { add_elemento, delete_nombre } from "../../redux/actions/lista";
-let Input_nombre = ({ texto, coordenadas, onChangeText, onPress }) => {
+let Input_nombre = ({ texto, coordenadas, onChangeText, onPress, imagen }) => {
   return (
     <View style={styles.contenedor}>
       <TextInput
@@ -16,7 +16,7 @@ let Input_nombre = ({ texto, coordenadas, onChangeText, onPress }) => {
       <IconBtn
         style={styles.btn_agregar}
         name={"plus-circle"}
-        onPress={() => onPress(texto, coordenadas)}
+        onPress={() => onPress(texto, coordenadas, imagen)}
       />
     </View>
   );
@@ -25,16 +25,17 @@ const mapStateToProps = (state, ownProps) => ({
   texto: state.nombre,
   coordenadas: !!state.maps[ownProps.mapName]
     ? state.maps[ownProps.mapName]
-    : state.maps
+    : state.maps,
+  imagen: state.galery
 });
 const mapDispatchToProps = dispatch => ({
   onChangeText: texto => {
     dispatch({ type: "MODIFICAR-NOMBRE", texto });
   },
-  onPress: (texto, coordenadas) => {
+  onPress: (texto, coordenadas,uri) => {
     if (texto) {
       dispatch(delete_nombre());
-      dispatch(add_elemento({ texto, coordenadas }));
+      dispatch(add_elemento({ texto, coordenadas, uri }));
     } else {
       alert("Agrega un lugar valido!");
     }

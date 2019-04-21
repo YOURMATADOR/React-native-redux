@@ -10,10 +10,11 @@ import {
 
 import uuid from "uuid/v4";
 
-const add_elemento = ({ texto,coordenadas}) => ({
+const add_elemento = ({ texto,coordenadas,uri}) => ({
   type: ADD_ELEMENTO,
   coordenadas,
   texto,
+  uri,
   id: uuid()
 });
 

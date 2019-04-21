@@ -18,7 +18,8 @@ const lista = (status = [], action) => {
           id: action.id,
           texto: action.texto,
           estado: false,
-          coordenadas: action.coordenadas
+          coordenadas: action.coordenadas,
+          uri:action.uri
         }
       ];
     case TOGGLE_ELEMENTO:

@@ -1,3 +1,5 @@
+import fondo from "../../src/assets/img/bright-squares.png"; //? imagen de fondo por defecto
+
 //* list types
 const ADD_ELEMENTO = "ADD-ELEMENTO";
 const TOGGLE_ELEMENTO = "TOGGLE-ELEMENTO";
@@ -28,8 +30,15 @@ const MAP_ADD_PLACE_INITIAL_STATE = {
     longitudeDelta: 0.0121
   }
 };
-const SET_NEW_REGION = "SET-NEW-REGION"
+
+//* galeria types
+const DEFAULT_BACKGROUND = fondo;
+const ADD_IMAGE = "ADD-IMAGE";
+
+const SET_NEW_REGION = "SET-NEW-REGION";
 export {
+  DEFAULT_BACKGROUND,
+  ADD_IMAGE,
   DELETE_NOMBRE,
   SET_NEW_REGION,
   MAP_ADD_PLACE_INITIAL_STATE,
